@@ -8,9 +8,6 @@ import { blogPosts } from '@/data/blog';
 import { Card, CardContent } from '@/components/ui/card';
 import ReactMarkdown from 'react-markdown';
 
-// Add this dependency
-<lov-add-dependency>react-markdown@9.0.1</lov-add-dependency>
-
 const BlogPost = () => {
   const { id } = useParams();
   const navigate = useNavigate();
