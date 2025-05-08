@@ -14,6 +14,12 @@ import BlogPost from "./pages/BlogPost";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
+// Import admin pages
+import Admin from "./pages/Admin";
+import AdminBlog from "./pages/AdminBlog";
+import AdminSkills from "./pages/AdminSkills";
+import AdminProjects from "./pages/AdminProjects";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -29,6 +35,13 @@ const App = () => (
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:id" element={<BlogPost />} />
           <Route path="/contact" element={<Contact />} />
+          
+          {/* Admin routes */}
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/admin/blogs" element={<AdminBlog />} />
+          <Route path="/admin/skills" element={<AdminSkills />} />
+          <Route path="/admin/projects" element={<AdminProjects />} />
+          
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
