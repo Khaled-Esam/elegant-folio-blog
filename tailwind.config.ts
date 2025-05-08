@@ -22,6 +22,7 @@ export default {
 			fontFamily: {
 				sans: ['Inter', 'sans-serif'],
 				serif: ['Playfair Display', 'serif'],
+				prose: ['Merriweather', 'serif']
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -63,6 +64,47 @@ export default {
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
 			},
+			typography: {
+				DEFAULT: {
+					css: {
+						maxWidth: '65ch',
+						color: 'hsl(var(--foreground))',
+						a: {
+							color: 'hsl(var(--primary))',
+							textDecoration: 'none',
+							'&:hover': {
+								color: 'hsl(var(--primary))',
+							},
+						},
+						h1: {
+							fontFamily: 'Playfair Display, serif',
+							fontWeight: '600',
+						},
+						h2: {
+							fontFamily: 'Playfair Display, serif',
+							fontWeight: '600',
+						},
+						h3: {
+							fontFamily: 'Playfair Display, serif',
+							fontWeight: '600',
+						},
+						h4: {
+							fontFamily: 'Playfair Display, serif',
+							fontWeight: '600',
+						},
+						blockquote: {
+							fontStyle: 'italic',
+							borderLeftColor: 'hsl(var(--primary))',
+						},
+						'code::before': {
+							content: '""',
+						},
+						'code::after': {
+							content: '""',
+						},
+					},
+				},
+			},
 			keyframes: {
 				'accordion-down': {
 					from: {
@@ -92,5 +134,5 @@ export default {
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 } satisfies Config;
