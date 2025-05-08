@@ -1,15 +1,16 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 const Navbar = () => {
   const location = useLocation();
-  const [isScrolled, setIsScrolled] = React.useState(false);
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 10) {
         setIsScrolled(true);
@@ -17,6 +18,11 @@ const Navbar = () => {
         setIsScrolled(false);
       }
     };
+
+    // Check if user is admin
+    const username = localStorage.getItem('admin-username');
+    const password = localStorage.getItem('admin-password');
+    setIsAdmin(username === 'khaled-esam' && password === 'admin-pass');
 
     window.addEventListener('scroll', handleScroll);
     return () => {
@@ -30,8 +36,12 @@ const Navbar = () => {
     { name: 'Projects', path: '/projects' },
     { name: 'Blog', path: '/blog' },
     { name: 'Contact', path: '/contact' },
-    { name: 'Admin', path: '/admin' },
   ];
+  
+  // Only add the admin link if the user is admin
+  if (isAdmin) {
+    navLinks.push({ name: 'Admin', path: '/khaled-esam/dash/admin' });
+  }
 
   return (
     <nav
@@ -44,7 +54,7 @@ const Navbar = () => {
     >
       <div className="container flex items-center justify-between">
         <Link to="/" className="flex items-center">
-          <h1 className="text-xl font-bold font-serif text-primary">Your Name</h1>
+          <h1 className="text-xl font-bold font-serif text-primary">Khaled Esam</h1>
         </Link>
 
         <div className="hidden md:flex items-center space-x-8">
