@@ -8,7 +8,7 @@ const SkillBar = ({ level }: { level: number }) => {
   return (
     <div className="w-full bg-secondary h-2 rounded-full overflow-hidden">
       <div 
-        className="bg-primary h-full rounded-full"
+        className="bg-primary h-full rounded-full transition-all duration-1000 ease-out"
         style={{ width: `${level * 20}%` }}
       />
     </div>
@@ -29,7 +29,7 @@ const SkillsSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {skillCategories.map((category, index) => (
-            <Card key={index} className="overflow-hidden">
+            <Card key={index} className="overflow-hidden hover:shadow-lg transition-all duration-300">
               <div className="bg-primary text-primary-foreground p-4">
                 <h3 className="text-xl font-serif font-semibold">{category.name}</h3>
               </div>
@@ -42,9 +42,6 @@ const SkillsSection = () => {
                           skill.level > 3 ? "text-foreground" : "text-muted-foreground"
                         )}>
                           {skill.name}
-                        </span>
-                        <span className="text-xs text-muted-foreground">
-                          {skill.level}/5
                         </span>
                       </div>
                       <SkillBar level={skill.level} />
