@@ -4,7 +4,7 @@ import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
-import { projects } from '@/data/projects';
+import { useData } from '@/contexts/DataContext';
 
 const ProjectCard = ({ project }) => {
   return (
@@ -44,6 +44,7 @@ const ProjectCard = ({ project }) => {
 };
 
 const ProjectsSection = ({ limit = 0 }) => {
+  const { projects } = useData();
   const displayProjects = limit > 0 ? projects.slice(0, limit) : projects;
   
   return (
@@ -62,7 +63,7 @@ const ProjectsSection = ({ limit = 0 }) => {
           ))}
         </div>
 
-        {limit > 0 && (
+        {limit > 0 && projects.length > limit && (
           <div className="mt-12 text-center">
             <Button asChild>
               <Link to="/projects">View All Projects</Link>

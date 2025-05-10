@@ -6,13 +6,14 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent } from '@/components/ui/card';
-import { blogPosts, BlogPost } from '@/data/blog';
+import { BlogPost } from '@/data/blog';
 import { Link } from 'react-router-dom';
 import { toast } from '@/hooks/use-toast';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { useData } from '@/contexts/DataContext';
 
 const AdminBlog = () => {
-  const [posts, setPosts] = useState(blogPosts);
+  const { blogs, setBlogs } = useData();
   const [isAdding, setIsAdding] = useState(false);
   const [isEditing, setIsEditing] = useState<string | null>(null);
   const [formData, setFormData] = useState<BlogPost>({
@@ -39,10 +40,10 @@ const AdminBlog = () => {
 
     if (isEditing) {
       // Update existing post
-      const updatedPosts = posts.map(post => 
+      const updatedPosts = blogs.map(post => 
         post.id === isEditing ? { ...formData } : post
       );
-      setPosts(updatedPosts);
+      setBlogs(updatedPosts);
       toast({
         title: "Post Updated",
         description: "The blog post has been successfully updated.",
@@ -50,12 +51,12 @@ const AdminBlog = () => {
       setIsEditing(null);
     } else {
       // Create new post
-      const newId = (Math.max(...posts.map(p => parseInt(p.id))) + 1).toString();
+      const newId = (Math.max(...blogs.map(p => parseInt(p.id))) + 1).toString();
       const newPost = {
         ...formData,
         id: newId
       };
-      setPosts([...posts, newPost]);
+      setBlogs([...blogs, newPost]);
       toast({
         title: "Post Created",
         description: "A new blog post has been created.",
@@ -83,8 +84,8 @@ const AdminBlog = () => {
   };
 
   const handleDeleteClick = (id: string) => {
-    const updatedPosts = posts.filter(post => post.id !== id);
-    setPosts(updatedPosts);
+    const updatedPosts = blogs.filter(post => post.id !== id);
+    setBlogs(updatedPosts);
     toast({
       title: "Post Deleted",
       description: "The blog post has been successfully deleted.",

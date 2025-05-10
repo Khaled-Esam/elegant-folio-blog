@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
-import { skillCategories, SkillCategory, Skill } from '@/data/skills';
+import { Skill } from '@/data/skills';
 import { Link } from 'react-router-dom';
 import { toast } from '@/hooks/use-toast';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -16,10 +16,11 @@ import {
   SelectTrigger, 
   SelectValue 
 } from '@/components/ui/select';
+import { useData } from '@/contexts/DataContext';
 
 const AdminSkills = () => {
-  const [categories, setCategories] = useState(skillCategories);
-  const [selectedCategory, setSelectedCategory] = useState<string>(categories[0]?.name || '');
+  const { skills, setSkills } = useData();
+  const [selectedCategory, setSelectedCategory] = useState<string>(skills[0]?.name || '');
   const [isAddingCategory, setIsAddingCategory] = useState(false);
   const [isAddingSkill, setIsAddingSkill] = useState(false);
   const [isEditingSkill, setIsEditingSkill] = useState<string | null>(null);
@@ -59,12 +60,12 @@ const AdminSkills = () => {
   const handleAddCategory = (e) => {
     e.preventDefault();
     
-    const newCategory: SkillCategory = {
+    const newCategory = {
       name: categoryForm.name,
       skills: []
     };
     
-    setCategories([...categories, newCategory]);
+    setSkills([...skills, newCategory]);
     setSelectedCategory(newCategory.name);
     setCategoryForm({ name: '' });
     setIsAddingCategory(false);
@@ -78,18 +79,18 @@ const AdminSkills = () => {
   const handleAddSkill = (e) => {
     e.preventDefault();
     
-    const categoryIndex = categories.findIndex(cat => cat.name === selectedCategory);
+    const categoryIndex = skills.findIndex(cat => cat.name === selectedCategory);
     if (categoryIndex === -1) return;
     
     if (isEditingSkill) {
       // Update existing skill
-      const updatedCategories = [...categories];
+      const updatedCategories = [...skills];
       const category = updatedCategories[categoryIndex];
       
       const skillIndex = category.skills.findIndex(s => s.name === isEditingSkill);
       if (skillIndex !== -1) {
         category.skills[skillIndex] = { ...skillForm };
-        setCategories(updatedCategories);
+        setSkills(updatedCategories);
         
         toast({
           title: "Skill Updated",
@@ -98,9 +99,9 @@ const AdminSkills = () => {
       }
     } else {
       // Add new skill
-      const updatedCategories = [...categories];
+      const updatedCategories = [...skills];
       updatedCategories[categoryIndex].skills.push({ ...skillForm });
-      setCategories(updatedCategories);
+      setSkills(updatedCategories);
       
       toast({
         title: "Skill Added",
@@ -120,14 +121,14 @@ const AdminSkills = () => {
   };
 
   const handleDeleteSkill = (skillName: string) => {
-    const categoryIndex = categories.findIndex(cat => cat.name === selectedCategory);
+    const categoryIndex = skills.findIndex(cat => cat.name === selectedCategory);
     if (categoryIndex === -1) return;
     
-    const updatedCategories = [...categories];
+    const updatedCategories = [...skills];
     const category = updatedCategories[categoryIndex];
     
     category.skills = category.skills.filter(s => s.name !== skillName);
-    setCategories(updatedCategories);
+    setSkills(updatedCategories);
     
     toast({
       title: "Skill Deleted",
@@ -137,8 +138,8 @@ const AdminSkills = () => {
   };
 
   const handleDeleteCategory = (categoryName: string) => {
-    const updatedCategories = categories.filter(cat => cat.name !== categoryName);
-    setCategories(updatedCategories);
+    const updatedCategories = skills.filter(cat => cat.name !== categoryName);
+    setSkills(updatedCategories);
     
     if (updatedCategories.length > 0) {
       setSelectedCategory(updatedCategories[0].name);

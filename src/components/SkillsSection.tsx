@@ -1,8 +1,8 @@
 
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
-import { skillCategories } from '@/data/skills';
 import { cn } from '@/lib/utils';
+import { useData } from '@/contexts/DataContext';
 
 const SkillBar = ({ level }: { level: number }) => {
   return (
@@ -16,6 +16,8 @@ const SkillBar = ({ level }: { level: number }) => {
 };
 
 const SkillsSection = () => {
+  const { skills } = useData();
+  
   return (
     <section className="py-16">
       <div className="container">
@@ -28,7 +30,7 @@ const SkillsSection = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {skillCategories.map((category, index) => (
+          {skills.map((category, index) => (
             <Card key={index} className="overflow-hidden">
               <div className="bg-primary text-primary-foreground p-4">
                 <h3 className="text-xl font-serif font-semibold">{category.name}</h3>

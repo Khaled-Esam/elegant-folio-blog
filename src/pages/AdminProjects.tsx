@@ -6,13 +6,14 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent } from '@/components/ui/card';
-import { projects, Project } from '@/data/projects';
+import { Project } from '@/data/projects';
 import { Link } from 'react-router-dom';
 import { toast } from '@/hooks/use-toast';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { useData } from '@/contexts/DataContext';
 
 const AdminProjects = () => {
-  const [projectsList, setProjectsList] = useState(projects);
+  const { projects, setProjects } = useData();
   const [isAdding, setIsAdding] = useState(false);
   const [isEditing, setIsEditing] = useState<string | null>(null);
   const [formData, setFormData] = useState<Project>({
@@ -38,10 +39,10 @@ const AdminProjects = () => {
 
     if (isEditing) {
       // Update existing project
-      const updatedProjects = projectsList.map(project => 
+      const updatedProjects = projects.map(project => 
         project.id === isEditing ? { ...formData } : project
       );
-      setProjectsList(updatedProjects);
+      setProjects(updatedProjects);
       toast({
         title: "Project Updated",
         description: "The project has been successfully updated.",
@@ -49,12 +50,12 @@ const AdminProjects = () => {
       setIsEditing(null);
     } else {
       // Create new project
-      const newId = (Math.max(...projectsList.map(p => parseInt(p.id))) + 1).toString();
+      const newId = (Math.max(...projects.map(p => parseInt(p.id))) + 1).toString();
       const newProject = {
         ...formData,
         id: newId
       };
-      setProjectsList([...projectsList, newProject]);
+      setProjects([...projects, newProject]);
       toast({
         title: "Project Created",
         description: "A new project has been created.",
@@ -84,8 +85,8 @@ const AdminProjects = () => {
   };
 
   const handleDeleteClick = (id: string) => {
-    const updatedProjects = projectsList.filter(project => project.id !== id);
-    setProjectsList(updatedProjects);
+    const updatedProjects = projects.filter(project => project.id !== id);
+    setProjects(updatedProjects);
     toast({
       title: "Project Deleted",
       description: "The project has been successfully deleted.",

@@ -4,7 +4,7 @@ import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
-import { blogPosts } from '@/data/blog';
+import { useData } from '@/contexts/DataContext';
 
 const BlogPostCard = ({ post }) => {
   return (
@@ -41,7 +41,8 @@ const BlogPostCard = ({ post }) => {
 };
 
 const BlogSection = ({ limit = 0 }) => {
-  const displayPosts = limit > 0 ? blogPosts.slice(0, limit) : blogPosts;
+  const { blogs } = useData();
+  const displayPosts = limit > 0 ? blogs.slice(0, limit) : blogs;
   
   return (
     <section className="py-16 bg-secondary/40">
@@ -59,7 +60,7 @@ const BlogSection = ({ limit = 0 }) => {
           ))}
         </div>
 
-        {limit > 0 && (
+        {limit > 0 && blogs.length > limit && (
           <div className="mt-12 text-center">
             <Button asChild>
               <Link to="/blog">View All Posts</Link>
