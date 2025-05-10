@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Layout from '@/components/Layout';
 import { Button } from '@/components/ui/button';
@@ -154,7 +153,7 @@ const AdminSkills = () => {
     });
   };
 
-  const currentCategory = categories.find(cat => cat.name === selectedCategory);
+  const currentCategory = skills.find(cat => cat.name === selectedCategory);
 
   return (
     <Layout>
@@ -204,7 +203,7 @@ const AdminSkills = () => {
             </Card>
           ) : null}
 
-          {categories.length > 0 && (
+          {skills.length > 0 && (
             <div className="mb-8 flex flex-col md:flex-row gap-4 justify-between">
               <div className="w-full md:w-1/3">
                 <Label htmlFor="categorySelect">Select Category</Label>
@@ -213,7 +212,7 @@ const AdminSkills = () => {
                     <SelectValue placeholder="Select a category" />
                   </SelectTrigger>
                   <SelectContent>
-                    {categories.map((category) => (
+                    {skills.map((category) => (
                       <SelectItem key={category.name} value={category.name}>
                         {category.name}
                       </SelectItem>

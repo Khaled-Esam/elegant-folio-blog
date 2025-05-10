@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Layout from '@/components/Layout';
 import { Button } from '@/components/ui/button';
@@ -199,12 +198,12 @@ const AdminBlog = () => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {posts.length === 0 ? (
+                {blogs.length === 0 ? (
                   <TableRow>
                     <TableCell colSpan={4} className="text-center">No blog posts found</TableCell>
                   </TableRow>
                 ) : (
-                  posts.map((post) => (
+                  blogs.map((post) => (
                     <TableRow key={post.id}>
                       <TableCell>{post.title}</TableCell>
                       <TableCell>{post.category}</TableCell>

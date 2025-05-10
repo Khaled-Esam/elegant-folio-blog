@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Layout from '@/components/Layout';
 import { Button } from '@/components/ui/button';
@@ -207,12 +206,12 @@ const AdminProjects = () => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {projectsList.length === 0 ? (
+                {projects.length === 0 ? (
                   <TableRow>
                     <TableCell colSpan={3} className="text-center">No projects found</TableCell>
                   </TableRow>
                 ) : (
-                  projectsList.map((project) => (
+                  projects.map((project) => (
                     <TableRow key={project.id}>
                       <TableCell>{project.title}</TableCell>
                       <TableCell>
