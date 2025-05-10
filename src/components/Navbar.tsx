@@ -4,6 +4,13 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
+// Define type for navigation links
+type NavLink = {
+  name: string;
+  path: string;
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+};
+
 const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -31,13 +38,13 @@ const Navbar = () => {
     };
   }, []);
 
-  const handleAdminClick = (e) => {
+  const handleAdminClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     navigate('/khaled-esam/dash/admin');
     console.log('Admin link clicked, navigating to:', '/khaled-esam/dash/admin');
   };
 
-  const navLinks = [
+  const navLinks: NavLink[] = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
     { name: 'Projects', path: '/projects' },
