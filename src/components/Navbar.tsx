@@ -1,11 +1,12 @@
 
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 const Navbar = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
@@ -30,6 +31,12 @@ const Navbar = () => {
     };
   }, []);
 
+  const handleAdminClick = (e) => {
+    e.preventDefault();
+    navigate('/khaled-esam/dash/admin');
+    console.log('Admin link clicked, navigating to:', '/khaled-esam/dash/admin');
+  };
+
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
@@ -38,9 +45,13 @@ const Navbar = () => {
     { name: 'Contact', path: '/contact' },
   ];
   
-  // Only add the admin link if the user is admin
+  // Add admin link with special handling
   if (isAdmin) {
-    navLinks.push({ name: 'Admin', path: '/khaled-esam/dash/admin' });
+    navLinks.push({ 
+      name: 'Admin', 
+      path: '/khaled-esam/dash/admin',
+      onClick: handleAdminClick
+    });
   }
 
   return (
@@ -62,6 +73,7 @@ const Navbar = () => {
             <Link
               key={link.path}
               to={link.path}
+              onClick={link.onClick}
               className={cn(
                 'text-sm font-medium transition-colors hover:text-primary',
                 location.pathname === link.path
@@ -120,13 +132,19 @@ const Navbar = () => {
               <Link
                 key={link.path}
                 to={link.path}
+                onClick={(e) => {
+                  if (link.onClick) {
+                    link.onClick(e);
+                  } else {
+                    setIsMenuOpen(false);
+                  }
+                }}
                 className={cn(
                   'text-sm font-medium py-2 transition-colors hover:text-primary',
                   location.pathname === link.path
                     ? 'text-primary'
                     : 'text-foreground/70'
                 )}
-                onClick={() => setIsMenuOpen(false)}
               >
                 {link.name}
               </Link>
