@@ -40,8 +40,8 @@ const Navbar = () => {
 
   const handleAdminClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    navigate('/khaled-esam/dash/admin');
     console.log('Admin link clicked, navigating to:', '/khaled-esam/dash/admin');
+    navigate('/khaled-esam/dash/admin');
   };
 
   const navLinks: NavLink[] = [
