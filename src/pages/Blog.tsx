@@ -1,11 +1,11 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import Layout from '@/components/Layout';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { blogPosts } from '@/data/blog';
+import { useData } from '@/contexts/DataContext';
 
 const BlogPostCard = ({ post }) => {
   return (
@@ -42,11 +42,14 @@ const BlogPostCard = ({ post }) => {
 };
 
 const Blog = () => {
-  const categories = [...new Set(blogPosts.map(post => post.category))];
-  const [selectedCategory, setSelectedCategory] = React.useState('All');
-  const [searchQuery, setSearchQuery] = React.useState('');
+  const { blogs } = useData();
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [searchQuery, setSearchQuery] = useState('');
   
-  const filteredPosts = blogPosts.filter(post => {
+  // Get unique categories from the blogs array
+  const categories = [...new Set(blogs.map(post => post.category))];
+  
+  const filteredPosts = blogs.filter(post => {
     const categoryMatch = selectedCategory === 'All' || post.category === selectedCategory;
     const searchMatch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
                        post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
