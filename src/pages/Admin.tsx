@@ -28,17 +28,17 @@ const Admin = () => {
             <AdminCard 
               title="Manage Blog Posts"
               description="Add, edit or delete blog posts"
-              linkTo="/khaled-esam/dash/admin/blogs"
+              linkTo="/admin/blogs"
             />
             <AdminCard 
               title="Manage Skills"
               description="Update your skills and expertise"
-              linkTo="/khaled-esam/dash/admin/skills"
+              linkTo="/admin/skills"
             />
             <AdminCard 
               title="Manage Projects"
               description="Add or modify your portfolio projects"
-              linkTo="/khaled-esam/dash/admin/projects"
+              linkTo="/admin/projects"
             />
           </div>
         </div>
