@@ -11,6 +11,9 @@ const Admin = () => {
       title: "Admin Dashboard",
       description: "Welcome to the admin dashboard. Please select an option to manage your content.",
     });
+    
+    // Log to help debugging
+    console.log("Admin page mounted at path:", window.location.pathname);
   }, []);
 
   return (
