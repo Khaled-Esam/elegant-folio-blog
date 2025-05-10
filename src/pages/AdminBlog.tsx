@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Layout from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -7,12 +7,11 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent } from '@/components/ui/card';
 import { blogPosts, BlogPost } from '@/data/blog';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { toast } from '@/hooks/use-toast';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 
 const AdminBlog = () => {
-  const navigate = useNavigate();
   const [posts, setPosts] = useState(blogPosts);
   const [isAdding, setIsAdding] = useState(false);
   const [isEditing, setIsEditing] = useState<string | null>(null);
@@ -26,11 +25,6 @@ const AdminBlog = () => {
     category: '',
     content: ''
   });
-
-  useEffect(() => {
-    // Log to help debugging
-    console.log("AdminBlog page mounted at path:", window.location.pathname);
-  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -106,11 +100,8 @@ const AdminBlog = () => {
             <h1 className="text-3xl font-serif font-semibold">Manage Blog Posts</h1>
             <div className="flex gap-4">
               <Button onClick={() => setIsAdding(true)}>Add New Post</Button>
-              <Button 
-                variant="outline" 
-                onClick={() => navigate('/khaled-esam/dash/admin')}
-              >
-                Back to Dashboard
+              <Button variant="outline" asChild>
+                <Link to="/admin">Back to Dashboard</Link>
               </Button>
             </div>
           </div>

@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Layout from '@/components/Layout';
 import { Button } from '@/components/ui/button';
@@ -311,6 +312,7 @@ const AdminSkills = () => {
                 <TableRow>
                   <TableHead>Name</TableHead>
                   <TableHead>Icon</TableHead>
+                  <TableHead>Level</TableHead>
                   <TableHead className="w-[150px]">Actions</TableHead>
                 </TableRow>
               </TableHeader>
@@ -319,6 +321,7 @@ const AdminSkills = () => {
                   <TableRow key={skill.name}>
                     <TableCell>{skill.name}</TableCell>
                     <TableCell>{skill.icon}</TableCell>
+                    <TableCell>{skill.level}/5</TableCell>
                     <TableCell>
                       <div className="flex gap-2">
                         <Button 
