@@ -37,7 +37,7 @@ const SkillsSection = () => {
             <Card key={index} className="overflow-hidden">
               <div className="bg-primary text-primary-foreground p-4">
                 <h3 className={`text-xl font-serif font-semibold ${language === 'ar' ? 'font-arabic' : ''}`}>
-                  {language === 'ar' && category.nameAr ? category.nameAr : category.name}
+                  {language === 'ar' && category.name_ar ? category.name_ar : category.name}
                 </h3>
               </div>
               <CardContent className="pt-6">
@@ -48,7 +48,7 @@ const SkillsSection = () => {
                         <span className={cn("font-medium", 
                           skill.level > 3 ? "text-foreground" : "text-muted-foreground"
                         )}>
-                          {language === 'ar' && skill.nameAr ? skill.nameAr : skill.name}
+                          {language === 'ar' && skill.name_ar ? skill.name_ar : skill.name}
                         </span>
                         <span className="text-xs text-muted-foreground">
                           {skill.level}/5
