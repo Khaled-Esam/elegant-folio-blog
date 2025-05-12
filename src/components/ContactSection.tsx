@@ -5,9 +5,11 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const ContactSection = () => {
   const { toast } = useToast();
+  const { t, language } = useLanguage();
   const [formData, setFormData] = React.useState({
     name: '',
     email: '',
@@ -45,28 +47,32 @@ const ContactSection = () => {
     <section className="py-16">
       <div className="container">
         <div className="max-w-3xl mx-auto mb-12 text-center">
-          <h2 className="text-3xl font-serif font-semibold mb-4">Get In Touch</h2>
-          <p className="text-muted-foreground">
-            Have a question or want to work together? Feel free to reach out!
+          <h2 className={`text-3xl font-serif font-semibold mb-4 ${language === 'ar' ? 'font-arabic' : ''}`}>
+            {t('getInTouchHeading')}
+          </h2>
+          <p className={`text-muted-foreground ${language === 'ar' ? 'font-arabic' : ''}`}>
+            {t('getInTouchDesc')}
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           <Card>
             <CardHeader>
-              <h3 className="text-xl font-serif font-semibold">Contact Information</h3>
+              <h3 className={`text-xl font-serif font-semibold ${language === 'ar' ? 'font-arabic' : ''}`}>
+                {t('contactInformation')}
+              </h3>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <h4 className="font-medium">Email</h4>
+                <h4 className={`font-medium ${language === 'ar' ? 'font-arabic' : ''}`}>{t('email')}</h4>
                 <p className="text-muted-foreground">yourname@example.com</p>
               </div>
               <div>
-                <h4 className="font-medium">Location</h4>
+                <h4 className={`font-medium ${language === 'ar' ? 'font-arabic' : ''}`}>{t('location')}</h4>
                 <p className="text-muted-foreground">City, Country</p>
               </div>
               <div>
-                <h4 className="font-medium">Follow Me</h4>
+                <h4 className={`font-medium ${language === 'ar' ? 'font-arabic' : ''}`}>{t('followMe')}</h4>
                 <div className="flex space-x-4 mt-2">
                   <a href="#" aria-label="GitHub" className="text-muted-foreground hover:text-primary">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
@@ -92,13 +98,15 @@ const ContactSection = () => {
 
           <Card>
             <CardHeader>
-              <h3 className="text-xl font-serif font-semibold">Send a Message</h3>
+              <h3 className={`text-xl font-serif font-semibold ${language === 'ar' ? 'font-arabic' : ''}`}>
+                {t('sendMessage')}
+              </h3>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <Input 
-                    placeholder="Your Name" 
+                    placeholder={t('yourName')}
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
@@ -108,7 +116,7 @@ const ContactSection = () => {
                 <div>
                   <Input 
                     type="email" 
-                    placeholder="Your Email" 
+                    placeholder={t('yourEmail')}
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
@@ -117,7 +125,7 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <Input 
-                    placeholder="Subject" 
+                    placeholder={t('subject')}
                     name="subject"
                     value={formData.subject}
                     onChange={handleChange}
@@ -126,7 +134,7 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <Textarea 
-                    placeholder="Your Message" 
+                    placeholder={t('message')}
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
@@ -135,7 +143,7 @@ const ContactSection = () => {
                   />
                 </div>
                 <Button type="submit" className="w-full" disabled={loading}>
-                  {loading ? 'Sending...' : 'Send Message'}
+                  {loading ? t('sending') : t('sendMessage')}
                 </Button>
               </form>
             </CardContent>

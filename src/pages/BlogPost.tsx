@@ -45,10 +45,10 @@ const BlogPost = () => {
       <article className="py-20">
         <div className="container max-w-4xl fade-in">
           <Button variant="ghost" asChild className="mb-8 hover-link">
-            <Link to="/blog" className="flex items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4 mr-2">
-                <path d="m12 19-7-7 7-7"></path>
-                <path d="M19 12H5"></path>
+            <Link to="/blog" className={`flex items-center ${language === 'ar' ? 'font-arabic' : ''}`}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`h-4 w-4 ${language === 'ar' ? 'ml-2' : 'mr-2'}`}>
+                <path d={language === 'ar' ? "m12 19 7-7-7-7" : "m12 19-7-7 7-7"}></path>
+                <path d={language === 'ar' ? "M19 12H5" : "M19 12H5"}></path>
               </svg>
               {t('blog')}
             </Link>
@@ -84,7 +84,9 @@ const BlogPost = () => {
           
           {relatedPosts.length > 0 && (
             <div className="mt-20 border-t pt-12">
-              <h3 className="text-2xl font-serif font-semibold mb-8">Related Posts</h3>
+              <h3 className={`text-2xl font-serif font-semibold mb-8 ${language === 'ar' ? 'font-arabic' : ''}`}>
+                {t('relatedPosts')}
+              </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {relatedPosts.map(relatedPost => {
                   const relatedTitle = language === 'ar' && relatedPost.title_ar ? relatedPost.title_ar : relatedPost.title;
@@ -102,11 +104,11 @@ const BlogPost = () => {
                       <CardContent className="pt-6">
                         <Link 
                           to={`/blog/${relatedPost.id}`}
-                          className="text-lg font-serif font-medium hover:text-primary transition-colors"
+                          className={`text-lg font-serif font-medium hover:text-primary transition-colors ${language === 'ar' ? 'font-arabic' : ''}`}
                         >
                           {relatedTitle}
                         </Link>
-                        <p className="text-sm text-muted-foreground mt-3">
+                        <p className={`text-sm text-muted-foreground mt-3 ${language === 'ar' ? 'font-arabic' : ''}`}>
                           {relatedExcerpt.substring(0, 100)}...
                         </p>
                       </CardContent>

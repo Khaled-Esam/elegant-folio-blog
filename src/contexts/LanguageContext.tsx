@@ -34,13 +34,39 @@ export const translations = {
     clearFilters: 'Clear Filters',
     noPostsFound: 'No posts found',
     tryChanging: 'Try changing your search criteria or category filter.',
+    blogHeading: 'Blog',
+    blogDescription: 'Thoughts, tutorials, and insights on web development and technology.',
+    
+    // Projects
+    myProjects: 'My Projects',
+    projectsDescription: 'A showcase of my work, personal projects, and contributions.',
+    viewProject: 'View Project',
+    viewCode: 'View Code',
     
     // Contact
+    contactMe: 'Contact Me',
+    contactDesc: 'Have a question or want to work together? Let\'s get in touch!',
     sendMessage: 'Send Message',
     yourName: 'Your Name',
     yourEmail: 'Your Email',
     subject: 'Subject',
     message: 'Message',
+    getInTouchHeading: 'Get In Touch',
+    getInTouchDesc: 'Have a question or want to work together? Feel free to reach out!',
+    contactInformation: 'Contact Information',
+    email: 'Email',
+    location: 'Location',
+    followMe: 'Follow Me',
+    letsCollaborate: 'Let\'s collaborate!',
+    collaborateDesc: 'I\'m always open to discussing new projects, creative ideas or opportunities to be part of your vision. Whether you have a question or just want to say hi, I\'ll try my best to get back to you as soon as possible.',
+    sending: 'Sending...',
+    
+    // Footer
+    quickLinks: 'Quick Links',
+    connect: 'Connect',
+    allRightsReserved: 'All rights reserved.',
+    yourName: 'Your Name',
+    professionalDeveloper: 'A professional developer specializing in creating elegant, user-friendly web applications.',
     
     // Admin
     adminDashboard: 'Admin Dashboard',
@@ -85,6 +111,20 @@ export const translations = {
     englishContent: 'English Content',
     arabicContent: 'Arabic Content',
     generalInfo: 'General Information',
+    
+    // Admin Auth
+    adminLogin: 'Admin Login',
+    loginToAccess: 'Login to access administrative features',
+    username: 'Username',
+    password: 'Password',
+    login: 'Login',
+    invalidCredentials: 'Invalid username or password',
+    
+    // Date and time
+    minRead: 'min read',
+    
+    // Blog post details
+    relatedPosts: 'Related Posts',
   },
   ar: {
     // Navigation
@@ -114,13 +154,39 @@ export const translations = {
     clearFilters: 'مسح الفلاتر',
     noPostsFound: 'لا توجد مقالات',
     tryChanging: 'حاول تغيير معايير البحث أو فلتر الفئة.',
+    blogHeading: 'المدونة',
+    blogDescription: 'أفكار ودروس ورؤى حول تطوير الويب والتكنولوجيا.',
+    
+    // Projects
+    myProjects: 'مشاريعي',
+    projectsDescription: 'عرض لأعمالي ومشاريعي الشخصية ومساهماتي.',
+    viewProject: 'عرض المشروع',
+    viewCode: 'عرض الكود',
     
     // Contact
+    contactMe: 'اتصل بي',
+    contactDesc: 'هل لديك سؤال أو ترغب في العمل معًا؟ دعنا نتواصل!',
     sendMessage: 'إرسال الرسالة',
     yourName: 'الاسم',
     yourEmail: 'البريد الإلكتروني',
     subject: 'الموضوع',
     message: 'الرسالة',
+    getInTouchHeading: 'تواصل معي',
+    getInTouchDesc: 'هل لديك سؤال أو ترغب في العمل معًا؟ لا تتردد في التواصل!',
+    contactInformation: 'معلومات الاتصال',
+    email: 'البريد الإلكتروني',
+    location: 'الموقع',
+    followMe: 'تابعني',
+    letsCollaborate: 'دعنا نتعاون!',
+    collaborateDesc: 'أنا دائمًا منفتح لمناقشة المشاريع الجديدة والأفكار الإبداعية أو الفرص لأكون جزءًا من رؤيتك. سواء كان لديك سؤال أو تريد فقط أن تقول مرحبًا، سأحاول بذل قصارى جهدي للرد عليك في أقرب وقت ممكن.',
+    sending: 'جاري الإرسال...',
+    
+    // Footer
+    quickLinks: 'روابط سريعة',
+    connect: 'تواصل',
+    allRightsReserved: 'جميع الحقوق محفوظة.',
+    yourName: 'اسمك',
+    professionalDeveloper: 'مطور محترف متخصص في إنشاء تطبيقات ويب أنيقة وسهلة الاستخدام.',
     
     // Admin
     adminDashboard: 'لوحة الإدارة',
@@ -165,6 +231,20 @@ export const translations = {
     englishContent: 'المحتوى بالإنجليزية',
     arabicContent: 'المحتوى بالعربية',
     generalInfo: 'معلومات عامة',
+    
+    // Admin Auth
+    adminLogin: 'تسجيل الدخول للمدير',
+    loginToAccess: 'سجل الدخول للوصول إلى ميزات الإدارة',
+    username: 'اسم المستخدم',
+    password: 'كلمة المرور',
+    login: 'تسجيل الدخول',
+    invalidCredentials: 'اسم المستخدم أو كلمة المرور غير صحيحة',
+    
+    // Date and time
+    minRead: 'دقيقة للقراءة',
+    
+    // Blog post details
+    relatedPosts: 'منشورات ذات صلة',
   }
 };
 

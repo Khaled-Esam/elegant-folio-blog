@@ -31,18 +31,20 @@ const BlogPostCard = ({ post }) => {
           <span className="text-xs text-muted-foreground">{post.date}</span>
         </div>
         <Link to={`/blog/${post.id}`}>
-          <h3 className="text-xl font-serif font-semibold hover:text-primary transition-colors">
+          <h3 className={`text-xl font-serif font-semibold hover:text-primary transition-colors ${language === 'ar' ? 'font-arabic' : ''}`}>
             {title}
           </h3>
         </Link>
       </CardHeader>
-      <CardContent className="flex-grow">
+      <CardContent className={`flex-grow ${language === 'ar' ? 'font-arabic' : ''}`}>
         <p className="text-muted-foreground">{excerpt}</p>
       </CardContent>
       <CardFooter className="flex justify-between items-center">
         <span className="text-sm text-muted-foreground">{post.readTime}</span>
         <Button variant="ghost" size="sm" asChild>
-          <Link to={`/blog/${post.id}`}>Read More</Link>
+          <Link to={`/blog/${post.id}`} className={language === 'ar' ? 'font-arabic' : ''}>
+            {language === 'ar' ? 'قراءة المزيد' : 'Read More'}
+          </Link>
         </Button>
       </CardFooter>
     </Card>
@@ -81,9 +83,11 @@ const Blog = () => {
       <section className="py-20">
         <div className="container">
           <div className="max-w-3xl mx-auto mb-8 text-center">
-            <h1 className="text-4xl font-serif font-semibold mb-4">{t('blog')}</h1>
-            <p className="text-xl text-muted-foreground">
-              Thoughts, tutorials, and insights on web development and technology.
+            <h1 className={`text-4xl font-serif font-semibold mb-4 ${language === 'ar' ? 'font-arabic' : ''}`}>
+              {t('blogHeading')}
+            </h1>
+            <p className={`text-xl text-muted-foreground ${language === 'ar' ? 'font-arabic' : ''}`}>
+              {t('blogDescription')}
             </p>
           </div>
 
@@ -137,8 +141,10 @@ const Blog = () => {
             </div>
           ) : (
             <div className="text-center py-12">
-              <h3 className="text-xl font-medium mb-2">{t('noPostsFound')}</h3>
-              <p className="text-muted-foreground mb-6">
+              <h3 className={`text-xl font-medium mb-2 ${language === 'ar' ? 'font-arabic' : ''}`}>
+                {t('noPostsFound')}
+              </h3>
+              <p className={`text-muted-foreground mb-6 ${language === 'ar' ? 'font-arabic' : ''}`}>
                 {t('tryChanging')}
               </p>
               <Button onClick={() => {

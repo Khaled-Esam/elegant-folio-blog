@@ -1,32 +1,60 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const { t, language } = useLanguage();
   
   return (
     <footer className="bg-secondary py-10 mt-20">
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h3 className="text-lg font-serif font-bold mb-4">Your Name</h3>
-            <p className="text-muted-foreground">
-              A professional developer specializing in creating elegant, user-friendly web applications.
+            <h3 className={`text-lg font-serif font-bold mb-4 ${language === 'ar' ? 'font-arabic' : ''}`}>
+              {t('yourName')}
+            </h3>
+            <p className={`text-muted-foreground ${language === 'ar' ? 'font-arabic' : ''}`}>
+              {t('professionalDeveloper')}
             </p>
           </div>
           <div>
-            <h4 className="text-base font-bold mb-4">Quick Links</h4>
+            <h4 className={`text-base font-bold mb-4 ${language === 'ar' ? 'font-arabic' : ''}`}>
+              {t('quickLinks')}
+            </h4>
             <ul className="space-y-2">
-              <li><Link to="/" className="text-muted-foreground hover:text-primary">Home</Link></li>
-              <li><Link to="/about" className="text-muted-foreground hover:text-primary">About</Link></li>
-              <li><Link to="/projects" className="text-muted-foreground hover:text-primary">Projects</Link></li>
-              <li><Link to="/blog" className="text-muted-foreground hover:text-primary">Blog</Link></li>
-              <li><Link to="/contact" className="text-muted-foreground hover:text-primary">Contact</Link></li>
+              <li>
+                <Link to="/" className={`text-muted-foreground hover:text-primary ${language === 'ar' ? 'font-arabic' : ''}`}>
+                  {t('home')}
+                </Link>
+              </li>
+              <li>
+                <Link to="/about" className={`text-muted-foreground hover:text-primary ${language === 'ar' ? 'font-arabic' : ''}`}>
+                  {t('about')}
+                </Link>
+              </li>
+              <li>
+                <Link to="/projects" className={`text-muted-foreground hover:text-primary ${language === 'ar' ? 'font-arabic' : ''}`}>
+                  {t('projects')}
+                </Link>
+              </li>
+              <li>
+                <Link to="/blog" className={`text-muted-foreground hover:text-primary ${language === 'ar' ? 'font-arabic' : ''}`}>
+                  {t('blog')}
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className={`text-muted-foreground hover:text-primary ${language === 'ar' ? 'font-arabic' : ''}`}>
+                  {t('contact')}
+                </Link>
+              </li>
             </ul>
           </div>
           <div>
-            <h4 className="text-base font-bold mb-4">Connect</h4>
+            <h4 className={`text-base font-bold mb-4 ${language === 'ar' ? 'font-arabic' : ''}`}>
+              {t('connect')}
+            </h4>
             <div className="flex space-x-4">
               <a href="#" aria-label="GitHub" className="text-muted-foreground hover:text-primary">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
@@ -49,7 +77,9 @@ const Footer = () => {
           </div>
         </div>
         <div className="border-t border-border/40 mt-8 pt-8 text-center text-sm text-muted-foreground">
-          <p>© {currentYear} Your Name. All rights reserved.</p>
+          <p className={language === 'ar' ? 'font-arabic' : ''}>
+            © {currentYear} Khaled Esam. {t('allRightsReserved')}
+          </p>
         </div>
       </div>
     </footer>
