@@ -32,6 +32,21 @@ const BlogPost = () => {
   const content = language === 'ar' && post.content_ar ? post.content_ar : post.content;
   const category = language === 'ar' && post.category_ar ? post.category_ar : post.category;
   
+  // Format read time with proper translation
+  const formatReadTime = (readTime) => {
+    if (!readTime) return '';
+    
+    // Extract the number from strings like "5 min read"
+    const timeMatch = readTime.match(/(\d+)\s+min/);
+    if (timeMatch && timeMatch[1]) {
+      return language === 'ar' 
+        ? `${timeMatch[1]} ${t('minRead')}`
+        : `${timeMatch[1]} ${t('minRead')}`;
+    }
+    
+    return readTime;
+  };
+  
   // Find related posts (same category, excluding current post)
   const relatedPosts = blogs
     .filter(p => {
@@ -62,7 +77,7 @@ const BlogPost = () => {
                 <circle cx="12" cy="12" r="10"/>
                 <polyline points="12 6 12 12 16 14"/>
               </svg>
-              {post.readTime}
+              {formatReadTime(post.readTime)}
             </span>
           </div>
           

@@ -8,12 +8,27 @@ import { useData } from '@/contexts/DataContext';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const BlogPostCard = ({ post }) => {
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
   
   // Use localized content based on the selected language
   const title = language === 'ar' && post.title_ar ? post.title_ar : post.title;
   const excerpt = language === 'ar' && post.excerpt_ar ? post.excerpt_ar : post.excerpt;
   const category = language === 'ar' && post.category_ar ? post.category_ar : post.category;
+  
+  // Format read time with proper translation
+  const formatReadTime = (readTime) => {
+    if (!readTime) return '';
+    
+    // Extract the number from strings like "5 min read"
+    const timeMatch = readTime.match(/(\d+)\s+min/);
+    if (timeMatch && timeMatch[1]) {
+      return language === 'ar' 
+        ? `${timeMatch[1]} ${t('minRead')}`
+        : `${timeMatch[1]} ${t('minRead')}`;
+    }
+    
+    return readTime;
+  };
   
   return (
     <Card className="overflow-hidden h-full flex flex-col blog-card">
@@ -41,7 +56,7 @@ const BlogPostCard = ({ post }) => {
         </p>
       </CardContent>
       <CardFooter className="flex justify-between items-center">
-        <span className="text-sm text-muted-foreground">{post.readTime}</span>
+        <span className="text-sm text-muted-foreground">{formatReadTime(post.readTime)}</span>
         <Button variant="ghost" size="sm" asChild>
           <Link to={`/blog/${post.id}`} className={language === 'ar' ? 'font-arabic' : ''}>
             {language === 'ar' ? 'قراءة المزيد' : 'Read More'}
