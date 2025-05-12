@@ -3,6 +3,7 @@ import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import { useData } from '@/contexts/DataContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const SkillBar = ({ level }: { level: number }) => {
   return (
@@ -17,15 +18,17 @@ const SkillBar = ({ level }: { level: number }) => {
 
 const SkillsSection = () => {
   const { skills } = useData();
+  const { t, language } = useLanguage();
   
   return (
     <section className="py-16">
       <div className="container">
         <div className="max-w-3xl mx-auto mb-12 text-center">
-          <h2 className="text-3xl font-serif font-semibold mb-4">My Skills</h2>
-          <p className="text-muted-foreground">
-            I've developed expertise in a range of technologies over the years.
-            Here's an overview of my technical skills.
+          <h2 className={`text-3xl font-serif font-semibold mb-4 ${language === 'ar' ? 'font-arabic' : ''}`}>
+            {t('mySkills')}
+          </h2>
+          <p className={`text-muted-foreground ${language === 'ar' ? 'font-arabic' : ''}`}>
+            {t('skillsDesc')}
           </p>
         </div>
 
@@ -33,7 +36,9 @@ const SkillsSection = () => {
           {skills.map((category, index) => (
             <Card key={index} className="overflow-hidden">
               <div className="bg-primary text-primary-foreground p-4">
-                <h3 className="text-xl font-serif font-semibold">{category.name}</h3>
+                <h3 className={`text-xl font-serif font-semibold ${language === 'ar' ? 'font-arabic' : ''}`}>
+                  {language === 'ar' && category.name_ar ? category.name_ar : category.name}
+                </h3>
               </div>
               <CardContent className="pt-6">
                 <ul className="space-y-5">
@@ -43,7 +48,7 @@ const SkillsSection = () => {
                         <span className={cn("font-medium", 
                           skill.level > 3 ? "text-foreground" : "text-muted-foreground"
                         )}>
-                          {skill.name}
+                          {language === 'ar' && skill.name_ar ? skill.name_ar : skill.name}
                         </span>
                         <span className="text-xs text-muted-foreground">
                           {skill.level}/5

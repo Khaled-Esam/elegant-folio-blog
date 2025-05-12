@@ -28,6 +28,10 @@ export const translations = {
     workExperience: 'Work Experience',
     education: 'Education',
     
+    // Skills section
+    mySkills: 'My Skills',
+    skillsDesc: 'I\'ve developed expertise in a range of technologies over the years. Here\'s an overview of my technical skills.',
+    
     // Blog
     readMore: 'Read More',
     searchPosts: 'Search posts...',
@@ -36,12 +40,17 @@ export const translations = {
     tryChanging: 'Try changing your search criteria or category filter.',
     blogHeading: 'Blog',
     blogDescription: 'Thoughts, tutorials, and insights on web development and technology.',
+    fromTheBlog: 'From The Blog',
+    blogInsights: 'Insights, tutorials, and thoughts on development, design, and technology.',
     
     // Projects
     myProjects: 'My Projects',
     projectsDescription: 'A showcase of my work, personal projects, and contributions.',
+    featuredProjects: 'Featured Projects',
+    projectsDesc: 'Here are some of my recent projects. Each one presented unique challenges and opportunities to grow.',
     viewProject: 'View Project',
     viewCode: 'View Code',
+    viewAllProjects: 'View All Projects',
     
     // Contact
     contactMe: 'Contact Me',
@@ -65,7 +74,7 @@ export const translations = {
     quickLinks: 'Quick Links',
     connect: 'Connect',
     allRightsReserved: 'All rights reserved.',
-    yourName: 'Your Name',
+    developerName: 'Khaled Esam',
     professionalDeveloper: 'A professional developer specializing in creating elegant, user-friendly web applications.',
     
     // Admin
@@ -148,6 +157,10 @@ export const translations = {
     workExperience: 'الخبرة العملية',
     education: 'التعليم',
     
+    // Skills section
+    mySkills: 'مهاراتي',
+    skillsDesc: 'لقد طورت خبرة في مجموعة متنوعة من التقنيات على مر السنين. إليكم نظرة عامة على مهاراتي التقنية.',
+    
     // Blog
     readMore: 'قراءة المزيد',
     searchPosts: 'بحث المقالات...',
@@ -156,12 +169,17 @@ export const translations = {
     tryChanging: 'حاول تغيير معايير البحث أو فلتر الفئة.',
     blogHeading: 'المدونة',
     blogDescription: 'أفكار ودروس ورؤى حول تطوير الويب والتكنولوجيا.',
+    fromTheBlog: 'من المدونة',
+    blogInsights: 'رؤى ودروس وأفكار حول التطوير والتصميم والتكنولوجيا.',
     
     // Projects
     myProjects: 'مشاريعي',
     projectsDescription: 'عرض لأعمالي ومشاريعي الشخصية ومساهماتي.',
+    featuredProjects: 'مشاريع مميزة',
+    projectsDesc: 'هنا بعض من مشاريعي الحديثة. كل مشروع قدم تحديات وفرص فريدة للنمو.',
     viewProject: 'عرض المشروع',
     viewCode: 'عرض الكود',
+    viewAllProjects: 'عرض كل المشاريع',
     
     // Contact
     contactMe: 'اتصل بي',
@@ -185,7 +203,7 @@ export const translations = {
     quickLinks: 'روابط سريعة',
     connect: 'تواصل',
     allRightsReserved: 'جميع الحقوق محفوظة.',
-    yourName: 'اسمك',
+    developerName: 'خالد عصام',
     professionalDeveloper: 'مطور محترف متخصص في إنشاء تطبيقات ويب أنيقة وسهلة الاستخدام.',
     
     // Admin

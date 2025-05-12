@@ -13,7 +13,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <h3 className={`text-lg font-serif font-bold mb-4 ${language === 'ar' ? 'font-arabic' : ''}`}>
-              {t('yourName')}
+              {t('developerName')}
             </h3>
             <p className={`text-muted-foreground ${language === 'ar' ? 'font-arabic' : ''}`}>
               {t('professionalDeveloper')}
@@ -78,7 +78,7 @@ const Footer = () => {
         </div>
         <div className="border-t border-border/40 mt-8 pt-8 text-center text-sm text-muted-foreground">
           <p className={language === 'ar' ? 'font-arabic' : ''}>
-            © {currentYear} Khaled Esam. {t('allRightsReserved')}
+            © {currentYear} {t('developerName')}. {t('allRightsReserved')}
           </p>
         </div>
       </div>
