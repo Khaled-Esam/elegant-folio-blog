@@ -6,30 +6,38 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { useData } from '@/contexts/DataContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const BlogPostCard = ({ post }) => {
+  const { language } = useLanguage();
+  
+  // Use Arabic content if available and Arabic is selected
+  const title = language === 'ar' && post.title_ar ? post.title_ar : post.title;
+  const excerpt = language === 'ar' && post.excerpt_ar ? post.excerpt_ar : post.excerpt;
+  const category = language === 'ar' && post.category_ar ? post.category_ar : post.category;
+  
   return (
     <Card className="overflow-hidden h-full flex flex-col blog-card">
       <div className="aspect-video overflow-hidden">
         <img 
           src={`${post.coverImage}?auto=format&fit=crop&w=600&h=350`}
-          alt={post.title}
+          alt={title}
           className="w-full h-full object-cover"
         />
       </div>
       <CardHeader>
         <div className="flex justify-between items-center mb-2">
-          <Badge variant="outline">{post.category}</Badge>
+          <Badge variant="outline">{category}</Badge>
           <span className="text-xs text-muted-foreground">{post.date}</span>
         </div>
         <Link to={`/blog/${post.id}`}>
           <h3 className="text-xl font-serif font-semibold hover:text-primary transition-colors">
-            {post.title}
+            {title}
           </h3>
         </Link>
       </CardHeader>
       <CardContent className="flex-grow">
-        <p className="text-muted-foreground">{post.excerpt}</p>
+        <p className="text-muted-foreground">{excerpt}</p>
       </CardContent>
       <CardFooter className="flex justify-between items-center">
         <span className="text-sm text-muted-foreground">{post.readTime}</span>
@@ -45,14 +53,26 @@ const Blog = () => {
   const { blogs } = useData();
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
+  const { t, language } = useLanguage();
   
-  // Get unique categories from the blogs array
-  const categories = [...new Set(blogs.map(post => post.category))];
+  // Get unique categories from the blogs array, considering the current language
+  const getCategories = () => {
+    if (language === 'ar') {
+      return [...new Set(blogs.map(post => post.category_ar || post.category))];
+    }
+    return [...new Set(blogs.map(post => post.category))];
+  };
+  
+  const categories = getCategories();
   
   const filteredPosts = blogs.filter(post => {
-    const categoryMatch = selectedCategory === 'All' || post.category === selectedCategory;
-    const searchMatch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                       post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
+    const categoryField = language === 'ar' ? (post.category_ar || post.category) : post.category;
+    const titleField = language === 'ar' ? (post.title_ar || post.title) : post.title;
+    const excerptField = language === 'ar' ? (post.excerpt_ar || post.excerpt) : post.excerpt;
+    
+    const categoryMatch = selectedCategory === 'All' || categoryField === selectedCategory;
+    const searchMatch = titleField.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                       excerptField.toLowerCase().includes(searchQuery.toLowerCase());
     return categoryMatch && searchMatch;
   });
 
@@ -61,7 +81,7 @@ const Blog = () => {
       <section className="py-20">
         <div className="container">
           <div className="max-w-3xl mx-auto mb-8 text-center">
-            <h1 className="text-4xl font-serif font-semibold mb-4">Blog</h1>
+            <h1 className="text-4xl font-serif font-semibold mb-4">{t('blog')}</h1>
             <p className="text-xl text-muted-foreground">
               Thoughts, tutorials, and insights on web development and technology.
             </p>
@@ -90,7 +110,7 @@ const Blog = () => {
             <div className="relative w-full md:w-auto md:min-w-[300px]">
               <input
                 type="text"
-                placeholder="Search posts..."
+                placeholder={t('searchPosts')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20"
@@ -117,15 +137,15 @@ const Blog = () => {
             </div>
           ) : (
             <div className="text-center py-12">
-              <h3 className="text-xl font-medium mb-2">No posts found</h3>
+              <h3 className="text-xl font-medium mb-2">{t('noPostsFound')}</h3>
               <p className="text-muted-foreground mb-6">
-                Try changing your search criteria or category filter.
+                {t('tryChanging')}
               </p>
               <Button onClick={() => {
                 setSelectedCategory('All');
                 setSearchQuery('');
               }}>
-                Clear Filters
+                {t('clearFilters')}
               </Button>
             </div>
           )}

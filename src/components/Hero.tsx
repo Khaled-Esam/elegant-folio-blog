@@ -26,7 +26,7 @@ const Hero = () => {
             <span className="inline-block">{t('heroTitle')} </span>
             <span className="text-primary inline-block">Khaled Esam</span>
           </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground mb-8">
+          <p className={`text-xl md:text-2xl text-muted-foreground mb-8 ${language === 'ar' ? 'font-arabic' : ''}`}>
             {t('heroDesc')}
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">

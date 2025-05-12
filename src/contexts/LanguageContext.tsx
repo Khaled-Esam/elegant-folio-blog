@@ -51,20 +51,40 @@ export const translations = {
     addNewPost: 'Add New Post',
     backToDashboard: 'Back to Dashboard',
     postTitle: 'Post Title',
+    postTitleAr: 'Post Title (Arabic)',
     category: 'Category',
+    categoryAr: 'Category (Arabic)',
     coverImageUrl: 'Cover Image URL',
     excerpt: 'Excerpt',
+    excerptAr: 'Excerpt (Arabic)',
     content: 'Content (Markdown)',
+    contentAr: 'Content (Arabic, Markdown)',
     cancel: 'Cancel',
     createPost: 'Create Post',
     updatePost: 'Update Post',
     edit: 'Edit',
     delete: 'Delete',
     
+    // Project Admin
+    projectTitle: 'Project Title',
+    projectTitleAr: 'Project Title (Arabic)',
+    projectDesc: 'Description',
+    projectDescAr: 'Description (Arabic)',
+    projectImage: 'Project Image URL',
+    tags: 'Tags (comma separated)',
+    tagsAr: 'Tags in Arabic (comma separated)',
+    demoUrl: 'Demo URL',
+    repoUrl: 'Repository URL',
+    
     // Language toggle
     changeLanguage: 'Change Language',
     english: 'English',
     arabic: 'Arabic',
+    
+    // Bilingual content
+    englishContent: 'English Content',
+    arabicContent: 'Arabic Content',
+    generalInfo: 'General Information',
   },
   ar: {
     // Navigation
@@ -111,20 +131,40 @@ export const translations = {
     addNewPost: 'إضافة مقال جديد',
     backToDashboard: 'العودة للوحة التحكم',
     postTitle: 'عنوان المقال',
+    postTitleAr: 'عنوان المقال (بالعربية)',
     category: 'الفئة',
+    categoryAr: 'الفئة (بالعربية)',
     coverImageUrl: 'رابط صورة الغلاف',
     excerpt: 'مقتطف',
+    excerptAr: 'مقتطف (بالعربية)',
     content: 'المحتوى (Markdown)',
+    contentAr: 'المحتوى بالعربية (Markdown)',
     cancel: 'إلغاء',
     createPost: 'إنشاء مقال',
     updatePost: 'تحديث المقال',
     edit: 'تعديل',
     delete: 'حذف',
     
+    // Project Admin
+    projectTitle: 'عنوان المشروع',
+    projectTitleAr: 'عنوان المشروع (بالعربية)',
+    projectDesc: 'الوصف',
+    projectDescAr: 'الوصف (بالعربية)',
+    projectImage: 'رابط صورة المشروع',
+    tags: 'الوسوم (مفصولة بفواصل)',
+    tagsAr: 'الوسوم بالعربية (مفصولة بفواصل)',
+    demoUrl: 'رابط العرض التجريبي',
+    repoUrl: 'رابط المستودع',
+    
     // Language toggle
     changeLanguage: 'تغيير اللغة',
     english: 'الإنجليزية',
     arabic: 'العربية',
+    
+    // Bilingual content
+    englishContent: 'المحتوى بالإنجليزية',
+    arabicContent: 'المحتوى بالعربية',
+    generalInfo: 'معلومات عامة',
   }
 };
 
