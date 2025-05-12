@@ -1,18 +1,20 @@
-
 import React from 'react';
 import Layout from '@/components/Layout';
 import { Card, CardContent } from '@/components/ui/card';
 import SkillsSection from '@/components/SkillsSection';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const About = () => {
+  const { t } = useLanguage();
+
   return (
     <Layout>
       <section className="py-20">
         <div className="container">
           <div className="max-w-3xl mx-auto mb-16 text-center">
-            <h1 className="text-4xl font-serif font-semibold mb-4">About Me</h1>
+            <h1 className="text-4xl font-serif font-semibold mb-4">{t('aboutMe')}</h1>
             <p className="text-xl text-muted-foreground">
-              Get to know more about my journey, experience, and passion for web development.
+              {t('aboutDesc')}
             </p>
           </div>
 
@@ -26,9 +28,9 @@ const About = () => {
             </div>
 
             <div className="md:col-span-2">
-              <h2 className="text-2xl font-serif font-semibold mb-4">My Story</h2>
+              <h2 className="text-2xl font-serif font-semibold mb-4">{t('myStory')}</h2>
               <p className="text-muted-foreground mb-4">
-                Hello! I'm Your Name, a passionate web developer with over X years of experience creating websites and applications that not only look great but also provide exceptional user experiences.
+                Hello! I'm Khaled Esam, a passionate web developer with over X years of experience creating websites and applications that not only look great but also provide exceptional user experiences.
               </p>
               <p className="text-muted-foreground mb-4">
                 My journey in web development began when I discovered my passion for coding during my studies. Since then, I've worked on numerous projects, ranging from small business websites to complex web applications for clients across different industries.
@@ -43,7 +45,7 @@ const About = () => {
           </div>
 
           <div className="mb-16">
-            <h2 className="text-2xl font-serif font-semibold text-center mb-8">Work Experience</h2>
+            <h2 className="text-2xl font-serif font-semibold text-center mb-8">{t('workExperience')}</h2>
             <div className="space-y-6">
               <Card>
                 <CardContent className="pt-6">
@@ -80,7 +82,7 @@ const About = () => {
           </div>
 
           <div className="mb-16">
-            <h2 className="text-2xl font-serif font-semibold text-center mb-8">Education</h2>
+            <h2 className="text-2xl font-serif font-semibold text-center mb-8">{t('education')}</h2>
             <Card>
               <CardContent className="pt-6">
                 <div className="flex flex-col md:flex-row justify-between mb-2">

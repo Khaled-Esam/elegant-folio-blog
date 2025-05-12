@@ -3,11 +3,14 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { useLanguage } from '@/contexts/LanguageContext';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const Navbar = () => {
   const location = useLocation();
   const [isScrolled, setIsScrolled] = React.useState(false);
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const { t, language } = useLanguage();
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -25,13 +28,15 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'About', path: '/about' },
-    { name: 'Projects', path: '/projects' },
-    { name: 'Blog', path: '/blog' },
-    { name: 'Contact', path: '/contact' },
-    { name: 'Admin', path: '/admin' },
+    { name: t('home'), path: '/' },
+    { name: t('about'), path: '/about' },
+    { name: t('projects'), path: '/projects' },
+    { name: t('blog'), path: '/blog' },
+    { name: t('contact'), path: '/contact' },
   ];
+
+  // Admin link is not shown in the navigation anymore
+  // It's only accessible via direct URL
 
   return (
     <nav
@@ -44,7 +49,7 @@ const Navbar = () => {
     >
       <div className="container flex items-center justify-between">
         <Link to="/" className="flex items-center">
-          <h1 className="text-xl font-bold font-serif text-primary">Your Name</h1>
+          <h1 className={`text-xl font-bold font-serif text-primary ${language === 'ar' ? 'font-arabic' : ''}`}>Khaled Esam</h1>
         </Link>
 
         <div className="hidden md:flex items-center space-x-8">
@@ -62,6 +67,7 @@ const Navbar = () => {
               {link.name}
             </Link>
           ))}
+          <LanguageSwitcher />
         </div>
 
         <div className="md:hidden">
@@ -121,6 +127,9 @@ const Navbar = () => {
                 {link.name}
               </Link>
             ))}
+            <div className="pt-2">
+              <LanguageSwitcher />
+            </div>
           </div>
         </div>
       )}
